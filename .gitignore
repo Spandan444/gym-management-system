@@ -1,5 +1,6 @@
 # Local server / MySQL logs (not part of the project)
 *.log
+config.local.php
 
 # OS junk
 Thumbs.db

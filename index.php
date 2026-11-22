@@ -108,20 +108,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <?php display_flash(); ?>
 
-        <div class="login-hint">
-            <strong>🔑 Demo Admin Credentials:</strong><br>
-            Username: <code>admin</code> &nbsp;|&nbsp; Password: <code>admin123</code>
-        </div>
+        <?php if (!getenv('VERCEL')): ?>
+            <div class="login-hint">
+                <strong>🔑 Demo Admin Credentials:</strong><br>
+                Username: <code>admin</code> &nbsp;|&nbsp; Password: <code>admin123</code>
+            </div>
+        <?php endif; ?>
 
         <form action="index.php" method="POST">
             <div class="form-group">
                 <label for="username">Username <span class="required">*</span></label>
-                <input type="text" id="username" name="username" class="form-control" placeholder="Enter username (e.g. admin)" required autofocus value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : 'admin'; ?>">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required autofocus value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : (!getenv('VERCEL') ? 'admin' : ''); ?>">
             </div>
 
             <div class="form-group">
                 <label for="password">Password <span class="required">*</span></label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Enter password (e.g. admin123)" required value="admin123">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required value="<?php echo !getenv('VERCEL') ? 'admin123' : ''; ?>">
             </div>
 
             <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 10px; font-size: 14px;">

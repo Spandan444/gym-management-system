@@ -1,0 +1,7 @@
+.git
+.vercel
+config.local.php
+*.log
+sql
+README.md
+DEPLOYMENT.md
